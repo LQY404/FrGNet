@@ -21,54 +21,10 @@ def add_cell_config(cfg):
     # cfg.bg_fg_dists = (0.8, 0.85)
     cfg.split = 'test'
     cfg.data_name = ['our', 'monuseg', 'dsb', 'tnbc', 'cpm17'][1]
-    cfg.mask_root = {
-        'our': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/mask/",
-        'monuseg': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSeg 2018 Training Data/MoNuSeg 2018 Training Data/mask_all/",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSegTestData/MoNuSegTestData/mask_all"
-        }[cfg.split],
-        'dsb': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/DSB/stage1_train_512/masks_all",
-        'tnbc': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/mask_all",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/mask_all_test"
-        }[cfg.split],
-        'cpm17': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/train/masks_all/",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/test/masks_all/",
-        }[cfg.split],
-    }[cfg.data_name]
-    cfg.img_file = {
-        'our': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/img/",
-        'monuseg': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSeg 2018 Training Data/MoNuSeg 2018 Training Data/Tissue Images_512/",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSegTestData/MoNuSegTestData/Tissue Images_512"
-        }[cfg.split],
-        'dsb': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/DSB/stage1_train_512/images",
-        'tnbc': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/images_512",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/image_test_512"
-        }[cfg.split],
-        'cpm17': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/train/Images_512/",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/test/Images_512/",
-        }[cfg.split],
-    }[cfg.data_name]
-    cfg.data_file = {
-        'our': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/annos.json",
-        'monuseg': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSeg 2018 Training Data/MoNuSeg 2018 Training Data/anno_train.json",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSegTestData/MoNuSegTestData/anno_test.json"
-        }[cfg.split],
-        'dsb': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/DSB/anno_train.json",
-        'tnbc': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/anno_train.json",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/TNBC_NucleiSegmentation/anno_test.json"
-        }[cfg.split],
-        'cpm17': {
-            'train': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/train/anno_train.json",
-            'test': "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/cpm17/test/anno_test.json"
-        }[cfg.split],
-    }[cfg.data_name]
+    cfg.mask_root = "", # place your dataset root
+        
+    cfg.img_file = "" # place the image root of your dataset
+    cfg.data_file = "" # place your dataset root
 
     cfg.transforms = 0
     # cfg.item = 4500 # can't use the name "items"
@@ -111,7 +67,6 @@ def add_cell_config(cfg):
     # cfg.local_rank = 3
     cfg.SOLVER.IMS_PER_BATCH = 2
     if cfg.MODEL.NUM_CLASSES == 35 or cfg.MODEL.NUM_CLASSES == 1:
-        print("sketch模式不需要冻结resnet")
         # cfg.MODEL.BACKBONE.NAME = "build_resnet_sketch_fpn_backbone"
 
         # cfg.MODEL.WEIGHTS = "/nfs/TEMP/pretrained_mrcnn/model_final.pth"  # dilation_v1, 512
