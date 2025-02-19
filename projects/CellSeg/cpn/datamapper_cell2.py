@@ -46,29 +46,7 @@ class CellDatasetMapper(DatasetMapper):
 
         print("训练模式") if is_train else print("测试模式")
 
-        if not self.is_cos:
-            legal_img_list = pickle.load(
-                open(
-                    "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/legal_" + self.split + "_files.pkl",
-                    'rb')
-            )
-            clegal_img_list = []
-            for e in legal_img_list:
-                if e == 'dfa69dce-d7e7-11ec-a8b3-d562838f25df_2.bmp':
-                    # print("dddd")
-                    # print(e)
-                    # assert 1 == 0
-                    e = splitext(e)[0] + '.png'
-                # else:
-                clegal_img_list.append(e)
-
-            self.legal_img_list = legal_img_list
-
-        else:
-            img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/new_seg_data/jzx/"
-            # img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/single_test"
-
-
+       
         self.items = len(self.legal_img_list)
 
         self.gen = CPNTargetGenerator(
