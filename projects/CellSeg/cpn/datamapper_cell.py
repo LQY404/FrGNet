@@ -46,46 +46,7 @@ class CellDatasetMapper(DatasetMapper):
 
         print("训练模式") if is_train else print("测试模式")
 
-        if not self.is_cos:
-            legal_img_list = pickle.load(
-                open(
-                    "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/legal_" + self.split + "_files.pkl",
-                    'rb')
-            )
-            clegal_img_list = []
-            for e in legal_img_list:
-                if e == 'dfa69dce-d7e7-11ec-a8b3-d562838f25df_2.bmp':
-                    # print("dddd")
-                    # print(e)
-                    # assert 1 == 0
-                    e = splitext(e)[0] + '.png'
-                # else:
-                clegal_img_list.append(e)
-
-            self.legal_img_list = legal_img_list
-
-        else:
-            img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/new_seg_data/jzx/"
-            # img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/single_test"
-            legal_img_list = os.listdir(img_files)  # ori_imgs
-            cimg_names = []
-            for e in legal_img_list:
-                if e.split(".")[-1] not in ['png', 'bmp', 'jpg']:
-                    # print(e)
-                    continue
-                cimg_names.append(e)
-
-            img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/new_seg_data/tct/"
-            legal_img_list = os.listdir(img_files)  # ori_imgs
-            for e in legal_img_list:
-                if e.split(".")[-1] not in ['png', 'bmp', 'jpg']:
-                    # print(e)
-                    continue
-                cimg_names.append(e)
-
-            self.legal_img_list = cimg_names
-            # print(self.legal_img_list)
-            # assert 1 == 0
+        
 
         self.items = len(self.legal_img_list)
 
