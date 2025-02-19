@@ -11,11 +11,9 @@ import pickle
 
 
 def register_cell_cos():
-    # excimg = os.listdir("/home/kyfq/detectron2/inferencevis_1712718119.7641475")
     excimg = []
 
-    img_files = "/home/kyfq/data/New_data_1024_w250filter"
-    # img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/single_test"
+    img_files = ""
     all_files = os.listdir(img_files)  # ori_imgs
     cimg_names = []
     for e in all_files:
@@ -53,12 +51,12 @@ def register_cell_cos():
 def register_cell(split='train'):
     # assert 1 == 0
     print("注册", split)
-    json_file = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/annos.json"
+    json_file = ""
 
     if split == 'train':
-        img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSeg 2018 Training Data/Data2/anno_trainv4.json"
+        img_files = ""
     else:
-        img_files = "/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/MoNuSegTestData/Data2/anno_testv4.json"
+        img_files = ""
     # all_files = os.listdir(img_files) # ori_imgs
     all_annos = json.load(open(img_files))
 
