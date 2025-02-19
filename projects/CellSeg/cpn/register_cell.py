@@ -10,7 +10,6 @@ import scipy
 import pickle
 
 def register_cell_cos():
-    # excimg = os.listdir("/home/kyfq/detectron2/inferencevis_1712718119.7641475")
     excimg = []
 
     img_files = ""
@@ -77,7 +76,6 @@ def register_cell(split='train'):
     json_file = ""  # anno.json
     img_files = ""
     # all_files = os.listdir(img_files) # ori_imgs
-    # with open("/run/user/1000/gvfs/smb-share:server=192.168.2.221,share=fqpathotech/ lingpeng/合并标注数据/data_512_new/legal_img_files.pkl", 'rb') as f:
     assert split in ('train', 'test')
     with open("", 'rb') as f:
         all_files = pickle.load(f)
