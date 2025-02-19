@@ -14,7 +14,7 @@ def register_cell(split='train'):
     # assert 1 == 0
     print("注册", split)
 
-    img_files = "/home/kyfq/data/New_data_1024_w150filter"
+    img_files = ""
     all_files = os.listdir(img_files) # ori_imgs
 
     # print(all_files)
